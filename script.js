@@ -5,8 +5,19 @@ function setup() //called once when the program starts
     translate(width/2, height/2);
     draw();
     drawAxesWithTicks();
+    frameRate(60);
+    keyPressed();
 }
 
+
+function keyPressed()
+{
+    for(let i= 0; i <= 999; i += 1)
+    if (key === 'h')
+    {
+        console.log('Loop: ' + i)
+    }
+}
 function draw() //this runs in a loop to update the display
 {
     line(-400,-400,400,400); /*x1 and y1 is the first point of the line, 
@@ -67,10 +78,3 @@ function drawAxesWithTicks()
         }
     }
 }
-
-// UNRELATED STUFF BELOW
-
-const fs = require('fs');
-fs.writeFileSync('example.txt','Hello, World!');
-const data = deepStrictEqual.readFileSync('example.txt', 'utf-8');
-console.log(data);

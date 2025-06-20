@@ -7,5 +7,44 @@
 <script src="script.js"></script>
 </head>
 <body>
+
+    <input type="file" id="fileInput" />
+<pre id="output"></pre>
+
+<script>
+  document.getElementById('fileInput').addEventListener('change', function () {
+    const file = this.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function () {
+      document.getElementById('output').textContent = reader.result;
+    };
+
+    if (file) {
+      reader.readAsText(file);
+    }
+  });
+</script>
+
+   <button onclick="saveFile()">Save Text File</button>
+
+<script>
+  function saveFile() {
+    const userInput = prompt("Type something to save in a .txt file:");
+    
+    if (userInput !== null) {
+      const blob = new Blob([userInput], { type: 'text/plain' });
+      const link = document.createElement('a');
+      
+      link.href = URL.createObjectURL(blob);
+      link.download = 'user_input.txt';
+      link.click();
+
+      URL.revokeObjectURL(link.href); // Cleanup
+    }
+  }
+</script>
+
+
 </body>
 </html>
